@@ -1,0 +1,29 @@
+#!/bin/bash
+# LINUX NIX & HOME MANAGER INSTALL
+
+# Install deps [for rust]
+sudo apt install pkg-config
+sudo apt install libssl-dev
+
+# Install i3-window-manager
+apt-get install i3-wm i3status suckless-tools
+
+# Install nix
+sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+curl -L https://nixos.org/nix/install | sh
+source $HOME/.nix-profile/etc/profile.d/nix.sh
+
+# Create symlink
+ln -is ${PWD} ${HOME}/.config/nixpkgs
+
+# Install home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels
+nix-shell '<home-manager>' -A install
+
+# Activate profile
+home-manager switch
+
+# Use cachix
+cachix use nix-community

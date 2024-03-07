@@ -1,0 +1,30 @@
+#!/bin/bash
+# x.613.ein..053
+
+# make functions keys available without pressing Fn button
+echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
+
+# fix the tilde map [to add it near 'z'] in macbook pro
+echo 0 | sudo tee /sys/module/hid_apple/parameters/iso_layout
+
+# ninja keyboard config
+setxkbmap -option \
+	-option caps:swapescape \
+  -option altwin:ctrl_win
+	# -option ctrl:swap_lwin_lctl \
+	# -option ctrl:swap_rwin_rctl
+	#-option altwin:swap_alt_win
+
+# ajust video positions
+# xrandr --output HDMI-0 --right-of DP-0
+# xrandr --output HDMI-0 --left-of DVI-D-0
+xrandr --output HDMI-0 --left-of DVI-D-0
+xrandr --output DP-0 --right-of DVI-D-0
+
+# HDMI-0 is the center monitor
+xrandr --output DVI-D-0 --left-of HDMI-0
+xrandr --output DP-0    --right-of HDMI-0
+
+# rodate the left and right monitors accordingly
+xrandr --output DP-0    --rotate left
+xrandr --output DVI-D-0 --rotate right

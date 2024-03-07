@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# turn on the wifi radio (maybe is off..)
+sudo nmcli radio wifi on
+
+# list available wifis
+sudo nmcli dev wifi
+
+# connect for the first time
+# nmcli dev wifi con "hzmob" password aloalo1818 name "hzmob"
+
+# scan hzmob
+sudo iwlist scanning | grep hzmob
+
+# connect to hzmob
+sudo nmcli con up id "hzmob"

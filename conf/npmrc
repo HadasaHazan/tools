@@ -1,0 +1,4 @@
+# Save GLOBAL files in this path
+# https://stackoverflow.com/questions/56813273/how-to-install-npm-end-user-packages-on-nixos
+prefix=~/.npm-packages
+
