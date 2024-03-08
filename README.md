@@ -1,12 +1,27 @@
 Install
 =======
 
+## Install
 
-To start installation, add git and curl from aptitude.
+htop
+aptitude
+git
+curl
 
+## Create Keys
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+* be sure every linux has only one name
+* add the keys to the remote server
 
 
 ## Add sudo
+
+If you are using installing a local Debian [not in the cloud], you probably will need
+to add sudo power for you.
+
 
 ```
 ## add to sudo users
@@ -24,13 +39,15 @@ my_user   ALL = NOPASSWD: ALL
 
 ```
 
-## Install Nix
+## Nix
 
-Single user install:
+[Nix](https://nixos.org/) is both a package manager and a special language used to describe software for that manager. It offers a unique approach to handling software on your system. Here are some of the key advantages of Nix:
 
-```
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-```
+* **Reproducible Builds:** Every package build is isolated and uses its own dependencies, leading to highly reliable and repeatable builds. This makes it easier to ensure everyone has the same environment regardless of their system.
+* **Easy System Customization:** Because Nix uses a declarative configuration, customizing your system is straightforward. You can easily switch between different software versions or desktop environments by modifying the configuration file.
+* **Safe Rollbacks:** Since Nix doesn't overwrite existing system files, rolling back to a previous system state is simple. This allows you to experiment without worrying about breaking your system.
+* **Large Package Collection:** Nixpkgs, a community-maintained repository, offers a vast collection of software packages.
+
 
 ## Install Home Manager
 
@@ -41,11 +58,11 @@ nix-shell '<home-manager>' -A install
 
 ```
 
-Probably you will need this below, in case it finds difficult to find the NIX_PATH:
+In case it finds difficult to find the NIX_PATH, use this commands:
 
 ```
 ## check install info
-nixeshell -p nix-info --run "nix-info -m"
+nix-shell -p nix-info --run "nix-info -m"
 
 ## export path
 export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
@@ -56,19 +73,83 @@ export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels
 ```
 
 
-## Install the Dotfiles
+## Install the Tools
 
 It will create a link to dotfiles repo
 
 ```
-rm -rf /home/my_user/.config/nixpkgs
-ln -s /home/my_user/dotfiles /home/my_user/.config/nixpkgs
+rm -rf /home/$USER/.config/home-manager
+ln -s /home/$USER/tools /home/$USER/.config/home-manager
+```
+
+
+## ZSH Theme
+
+We are using the [powerlevel10k](https://github.com/romkatv/powerlevel10k) that is very good and lightweight. After doing the wizard for the first time to config it, it saves a config file in the ~/.config/zsh/.p10k.zsh file, so I added it to the config folder here, and pointed to it using the home.nix, so all the machines will have the same p10k config.
+
+
+## Set ZSH Default
+
+See [here](https://www.cyberciti.biz/faq/change-my-default-shell-in-linux-using-chsh/) for details
+
+Find the zsh path and add to chsh, exemple:
+
+```
+whereis zsh
+/nix/store/3h09dhqyl3hgpp9cj3fj01dg9vcj6dgl-user-environment/bin/zsh
+sudo chsh -s /nix/store/3h09dhqyl3hgpp9cj3fj01dg9vcj6dgl-user-environment/bin/zsh
+
+## check
+grep "^${USER}" /etc/passwd
+```
+
+In case you need bash and zsh blocks you, use:
+
+```
+sudo /bin/bash
+```
+
+Another approach to change the default shell as described [here](https://discourse.nixos.org/t/using-home-manager-to-control-default-user-shell/8489/3)
+
+```
+which zsh
+$ /home/my_user/.nix-profile/bin/zsh
+
+sudo -i
+vi /etc/shells
+
+[add the /home/my_user/.nix-profile/bin/zsh]
+exit
+
+sudo chsh -s /home/my_user/.nix-profile/bin/zsh
+
+```
+
+
+If you find a conflict between the zsh in home-manager and zsh in the nix packages, probably the solution
+is to change the priority:
+
+```
+# see what nix version you have
+$ nix-env -q
+
+dapp-0.35.0
+ethsign-0.17.1
+hevm-0.49.0
+home-manager-path
+nix-2.5.1
+nss-cacert-3.71
+seth-0.12.0
+solc
+
+nix-env --set-flag priority 6 nix-2.5.1
 ```
 
 
 ## Dafny
 
-* [dafny-binaries](https://github.com/dafny-lang/dafny/releases/tag/v3.10.0)
+* [dafny-binaries](https://github.com/dafny-lang/dafny/releases/tag/v4.4.0)
+* [dafny-ubuntu-4.4](https://github.com/dafny-lang/dafny/releases/download/v4.4.0/dafny-4.4.0-x64-ubuntu-20.04.zip)
 
 ## Linux Keyboard Layout
 
@@ -221,68 +302,6 @@ Delete file forever
 wipe -rfi private/*
 ```
 
-## ZSH Theme
-
-We are using the [powerlevel10k](https://github.com/romkatv/powerlevel10k) that is very good and lightweight. After doing the wizard for the first time to config it, it saves a config file in the ~/.config/zsh/.p10k.zsh file, so I added it to the config folder here, and pointed to it using the home.nix, so all the machines will have the same p10k config.
-
-
-## Change Default Shell
-
-See [here](https://www.cyberciti.biz/faq/change-my-default-shell-in-linux-using-chsh/) for details
-
-Find the zsh path and add to chsh, exemple:
-
-```
-whereis zsh
-/nix/store/3h09dhqyl3hgpp9cj3fj01dg9vcj6dgl-user-environment/bin/zsh
-sudo chsh -s /nix/store/3h09dhqyl3hgpp9cj3fj01dg9vcj6dgl-user-environment/bin/zsh
-
-## check
-grep "^${USER}" /etc/passwd
-```
-
-In case you need bash and zsh blocks you, use:
-
-```
-sudo /bin/bash
-```
-
-Another approach to change the default shell as described [here](https://discourse.nixos.org/t/using-home-manager-to-control-default-user-shell/8489/3)
-
-```
-which zsh
-$ /home/my_user/.nix-profile/bin/zsh
-
-sudo -i
-vi /etc/shells
-
-[add the /home/my_user/.nix-profile/bin/zsh]
-exit
-
-sudo chsh -s /home/my_user/.nix-profile/bin/zsh
-
-```
-
-
-
-If you find a conflict between the zsh in home-manager and zsh in the nix packages, probably the solution
-is to change the priority:
-
-```
-# see what nix version you have
-$ nix-env -q
-
-dapp-0.35.0
-ethsign-0.17.1
-hevm-0.49.0
-home-manager-path
-nix-2.5.1
-nss-cacert-3.71
-seth-0.12.0
-solc
-
-nix-env --set-flag priority 6 nix-2.5.1
-```
 
 ## Zsh Performance
 
