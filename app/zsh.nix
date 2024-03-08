@@ -167,7 +167,6 @@ pkgs:
         d = "cd ~/dotfiles && nvim .";
         o = "i3lock && xset dpms force off";
         g = "gitui";
-        vi = "~/.bin/nvim.appimage";
         t = "tmux";
         q = "exit";
         c = "clear";

@@ -8,6 +8,7 @@ let
 
 in
   with pkgs; [
+    unstable.neovim
 
     # dafny
     unstable.dafny
