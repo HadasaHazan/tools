@@ -163,6 +163,7 @@ pkgs:
         sc = "scrot -s -e 'xclip -selection clipboard -t image/png -i $f' -e 'mv $f ~/Pictures'";
         agi =  "ag --ignore-dir={node_modules,abis}";
         i = "ipython";
+        vi = "nvim";
         y = "tmux -L y";
         d = "cd ~/dotfiles && nvim .";
         o = "i3lock && xset dpms force off";
