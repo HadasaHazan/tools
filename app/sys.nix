@@ -12,11 +12,6 @@ in
     qrencode
     gh
 
-    # Python
-    # https://github.com/stamparm/maltrail
-    python311Packages.pip
-    python311Packages.pcapy-ng
-
     # neovim with lua
     lua
     sumneko-lua-language-server
@@ -60,7 +55,7 @@ in
 
     # sys
     killall netcat-gnu tree
-    htop entr bat exa xclip
+    htop entr bat eza xclip
     cloc
 
     # utils

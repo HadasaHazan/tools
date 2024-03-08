@@ -29,7 +29,6 @@ in
   programs.zsh = zsh_mod;
   programs.git = git_mod;
   programs.tmux = tmux_mod;
-  programs.vscode = code_mod;
 
   programs.gpg = {
     enable = pkgs.stdenv.isLinux;

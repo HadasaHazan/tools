@@ -177,9 +177,9 @@ pkgs:
         cp = "cp -riv";
         cat = "bat --paging=never --style=plain";
         fzf = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
-        ls = "exa -bghH --icons";
-        l = "exa -bghHal";
-        tree = "exa --tree";
+        ls = "eza -bghH --icons";
+        l = "eza -bghHal";
+        tree = "eza --tree";
         home = "nvim $HOME/.config/nixpkgs/home.nix";
         config = "nvim $$HOME/.config/nixpkgs/configuration.nix";
         nvimconf = "nvim $HOME/config/app/nvim/nvim.nix";

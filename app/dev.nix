@@ -6,18 +6,14 @@ let
   # To compile arb-avm
   nativeBuildInputs = with pkgs; [ cmake pkg-config zlib ];
 
-  # For another python version, use ex: pkgs.python3 or pkgs.python39
-  python-with-packages = pkgs.python311.withPackages (p: with p; [
-    ipython
-    pandas
-    pip
-    setuptools
-    python-dotenv
-    flask
-  ]);
-
 in
   with pkgs; [
+
+    # dafny
+    unstable.dafny
+
+    # lean4
+    lean4
 
     # go-ethereum
     slither-analyzer
@@ -25,6 +21,7 @@ in
     go-ethereum
     bitcoin
     #echidna
+    unstable.framesh
 
     # C
     gcc gnumake cmake
@@ -49,10 +46,7 @@ in
     readline zlib
 
     # libs
-    nodejs_20 yarn yarn2nix
-
-    # python
-    python-with-packages
+    nodejs_21 yarn yarn2nix
 
     # java
     unstable.jdk21
