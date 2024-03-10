@@ -1,20 +1,57 @@
 Install
 =======
 
-## Install
+## Netfree
 
-htop
-aptitude
-git
-curl
+- Install netfree ubuntu certificate
+- Install browser certificate
+
+```
+1.2.3.4
+```
+
+## Install Slack
+
+* [slack-ubuntu](https://slack.com/downloads/linux)
+
+## Install System Tools
+
+Linux tools [already installed on the root user]
+
+```
+sudo apt install htop aptitude git curl
+```
 
 ## Create Keys
+
+Github uses ssh keys to access our repos and also to access our server.
+Leave the passcode in blank.
+
+
 ```
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+cat ~/.ssh/id_rsa.pub
 ```
 
 * be sure every linux has only one name
+* send the public keys **ONLY** on slack
 * add the keys to the remote server
+
+
+
+## Connect to Lab Server
+
+```
+ssh 34.165.212.190
+```
+
+
+## Clone Tools and Lab
+
+```
+git clone git@github.com:blockchain-audit/labs.git
+git clone git@github.com:blockchain-audit/tools.gi
+```
 
 
 ## Add sudo
