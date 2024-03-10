@@ -145,6 +145,22 @@ solc
 nix-env --set-flag priority 6 nix-2.5.1
 ```
 
+## Foundry
+
+Install Foundry compiler for solidity
+
+```
+curl -L https://foundry.paradigm.xyz | bash
+```
+
+## Huff
+
+Install Huff compiler
+
+```
+curl -L get.huff.sh | bash
+```
+
 
 ## Dafny
 
