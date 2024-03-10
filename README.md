@@ -161,6 +161,11 @@ Install Huff compiler
 curl -L get.huff.sh | bash
 ```
 
+## Go
+
+Go is already installed in the nix home manager config, to start coding:
+
+* [go-starter](https://go.dev/doc/tutorial/getting-started)
 
 ## Dafny
 

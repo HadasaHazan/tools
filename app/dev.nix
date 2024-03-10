@@ -16,6 +16,9 @@ in
     # lean4
     lean4
 
+    # go
+    go
+
     # go-ethereum
     slither-analyzer
     evmdis
