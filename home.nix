@@ -19,8 +19,8 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "henry";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/henry" else "/home/henry";
+  home.username = "hazan";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/hazan" else "/home/hazan";
 
   # Packages that should be installed to the user profile.
   #home.packages = dev ++ sys ++ dapp;
@@ -96,6 +96,5 @@ in
       enable = pkgs.stdenv.isLinux;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
-      pinentryFlavor = "curses";
     };
 }
