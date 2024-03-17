@@ -19,7 +19,7 @@ Install
 Linux tools [already installed on the root user]
 
 ```
-sudo apt install htop aptitude git curl
+sudo apt install htop aptitude git curl asciinema
 ```
 
 ## Create Keys
