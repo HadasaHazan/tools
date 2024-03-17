@@ -96,6 +96,5 @@ in
       enable = pkgs.stdenv.isLinux;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
-      pinentryFlavor = "curses";
     };
 }
