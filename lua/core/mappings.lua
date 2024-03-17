@@ -52,6 +52,8 @@ map('n', '<C-l>', '<C-w>l', opts)
 -- Split
 map('n', '<C-n>', ':vnew <CR>', opts)
 map('n', '<C-N>', ':vnew <CR>', opts)
+map('n', '<C-m>', ':new <CR>', opts)
+map('n', '<C-M>', ':new <CR>', opts)
 
 -- Tabs
 map('n', 'tt', ':tabnew <CR>',      opts)
@@ -107,6 +109,6 @@ map("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -----------------------------------------------------------
 
 -- Terminal mappings
-map('n', '<C-t>', ':Term<CR>',   { noremap = true })  -- open
+map('n', '<C-t>', ':term<CR>',   { noremap = true })  -- open
 map('t', '<Esc>', '<C-\\><C-n>', { noremap = true })  -- exit
 
