@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# download tools
+rm -rf tools
+git clone git@github.com:blockchain-audit/tools.git
+sed -i 's/hazan/$USER/g' filename
+
+
+# substitute the username
+# install home manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+
+# point our home to the tools
+rm -rf "/home/$USER/.config/home-manager"
+ln -s "/home/$USER/tools" "/home/$USER/.config/home-manager"
+
+# add
+# add /nix/store/1nc0s43b08zmzlpwbfvh7i448x3ymxis-home-manager-path/bin/zsh to /etc/shells
+sudo passwd chsr852
+
+Z=whereis zsh
+
+
+#
+home-manager switch
+wait
+printf "\n"

@@ -16,7 +16,6 @@ This cheat sheet summarizes keyboard shortcuts customized in your Neovim configu
 * `Ctrl` + `h`, `j`, `k`, `l`: Move between splits.
 * `<leader>w`: Hop to word using motion plugin.
 * `<leader>l`: Hop to line using motion plugin.
-* `<leader>r`: Reload configuration without restarting Neovim.
 * `<leader>q`: Close all windows and exit Neovim.
 
 **Insert Mode:**
@@ -45,10 +44,37 @@ This cheat sheet summarizes keyboard shortcuts customized in your Neovim configu
 * `tp`: Switch to previous tab.
 * `tc`: Close current tab.
 
-**Other:**
 
-* `map('t', '<Esc>', '<C-\\><C-n>', { noremap = true })`: Exit terminal mode with `Esc`, then send Ctrl-\ followed by Ctrl-n.
 
+## Plugin Ctrl-p
+
+The primary shortcut for invoking the ctrp-p plugin in NeoVim is:
+
+* `Ctrl-P`
+
+Once the plugin is open, you can use various shortcuts to navigate and interact with the search results:
+
+**Navigation:**
+
+* `Ctrl-J` / `Ctrl-K`: Navigate up/down through the list of results (alternative to arrow keys)
+* `Ctrl-F` / `Ctrl-B`: Cycle between different search modes (e.g., files, buffers, tags)
+
+**Selection and Opening:**
+
+* `Enter`: Open the selected item in the current window
+* `Ctrl-T` / `Ctrl-V`: Open the selected item in a new tab / vertical split
+* `Ctrl-X`: Open the selected item in a new window
+
+**Search Refinement:**
+
+* Type your search query in the prompt at the top of the ctrp-p window
+
+**Additional Actions:**
+
+* `F5`: Refresh the cache for the current directory (update search results)
+* `Ctrl-D`: Toggle between searching filenames only or full paths
+* `Ctrl-R`: Switch to regular expression search mode
+* `Ctrl-N` / `Ctrl-P`: Select the next/previous search term from the history
 
 
 ## Neovim LSP Navigation and Code Cheat Sheet
