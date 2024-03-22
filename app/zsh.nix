@@ -146,6 +146,9 @@ pkgs:
     # Set vi-mode and bind ctrl + space to accept autosuggestions
     bindkey '^ ' autosuggest-accept
 
+    # Ignore audit check and trust zsh and its plugins
+    ZSH_DISABLE_COMPFIX=true
+
     # End [initExtra]
     '';
 
